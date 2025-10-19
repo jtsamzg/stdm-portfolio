@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 type VisibilityState = {
   showToTop: boolean
@@ -11,13 +11,6 @@ const SCROLL_THRESHOLD = 160
 
 const ScrollButtons = () => {
   const [visible, setVisible] = useState<VisibilityState>({ showToTop: false, showToBottom: false })
-
-  const atBottom = useMemo(() => {
-    if (typeof window === 'undefined') return false
-    const { scrollY, innerHeight } = window
-    const { scrollHeight } = document.documentElement
-    return scrollY + innerHeight >= scrollHeight - 4
-  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
