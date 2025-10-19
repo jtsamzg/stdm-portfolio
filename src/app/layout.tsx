@@ -4,6 +4,7 @@ import './globals.css'
 import Footer from '@/components/Footer/Footer'
 import Navbar from '@/components/Navbar/Navbar'
 import ThemeMenu from '@/components/Theme/ThemeMenu'
+import ScrollButtons from '@/components/UI/ScrollButtons'
 import { Fira_Code } from 'next/font/google'
 
 const firaCode = Fira_Code({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'] })
@@ -13,23 +14,33 @@ const title = 'STDM | Javascript/PHP/Java Web Developer in Costa Rica'
 const description =
   "Skilled full-stack web developer in Chicago. I build responsive, user-friendly websites with React, NextJS, and NodeJS. Let's bring your vision to life. Hire me today!"
 
-const url = process.env.NEXT_PUBLIC_SITE_URL
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
+const metadataBase = siteUrl ? new URL(siteUrl) : undefined
 
 export const metadata: Metadata = {
   title,
   description,
   category: 'technology',
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
-  alternates: {
-    canonical: url,
-  },
-  openGraph: {
-    title,
-    description,
-    url,
-    siteName: 'STDM Digital Agency Portfolio',
-    type: 'website',
-  },
+  ...(metadataBase ? { metadataBase } : {}),
+  ...(siteUrl
+    ? {
+        alternates: { canonical: siteUrl },
+        openGraph: {
+          title,
+          description,
+          url: siteUrl,
+          siteName: 'STDM Digital Agency Portfolio',
+          type: 'website',
+        },
+      }
+    : {
+        openGraph: {
+          title,
+          description,
+          siteName: 'STDM Digital Agency Portfolio',
+          type: 'website',
+        },
+      }),
   twitter: {
     title,
     description,
@@ -46,11 +57,12 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="dark">
       <body className={`${firaCode.className}`}>
-        <header>
+        <header className="sticky top-0 z-[1000]">
           <Navbar />
         </header>
         {children}
         <ThemeMenu />
+        <ScrollButtons />
         <Footer />
       </body>
     </html>
