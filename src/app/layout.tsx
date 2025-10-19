@@ -12,7 +12,7 @@ const firaCode = Fira_Code({ subsets: ['latin'], weight: ['300', '400', '500', '
 const title = 'STDM | Javascript/PHP/Java Web Developer in Costa Rica'
 
 const description =
-  "Skilled full-stack web developer in Chicago. I build responsive, user-friendly websites with React, NextJS, and NodeJS. Let's bring your vision to life. Hire me today!"
+  "Skilled full-stack web developer in Costa Rica. I build responsive, user-friendly websites with React, NextJS, and NodeJS. Let's bring your vision to life. Hire me today!"
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
 const metadataBase = siteUrl ? new URL(siteUrl) : undefined
